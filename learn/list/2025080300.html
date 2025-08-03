@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>大钟刘学习学会(alpha)</title>
+        <title>大钟刘学习学会 - 知识库</title>
         <link rel="icon" href="\dazhongliu\file\icon\icon.png" type="image/x-icon" sizes="225x225" />
         <meta charset="utf-8" />
         <style>
@@ -21,7 +21,7 @@
                 margin: 30px;
                 margin-left: 4px;
             }
-    
+
             .title {
                 background-color: #00000000;
                 color: #000000;
@@ -49,46 +49,30 @@
                 color: #000000;
                 text-decoration: none;
             }
-    
+
             .posters-text {
                 background: #ffffff;
                 text-align: center;
                 width: 324px;
                 height: 30px;
                 background-attachment: fixed
-           }
-    
+            }
+
             .div0 {
                 display: flex;
                 justify-content: center;
-           }
+            }
         </style>
         <div class="head">
             <a href="/dazhongliu" class="navigation-bar-link">大钟刘官方网站</a>&emsp;
             <a href="/dazhongliu/learn" class="navigation-bar-link">学习学会</a>&emsp;
-           <a href="/dazhongliu" class="navigation-bar-link">测试2</a>&emsp;
+            <a href="/dazhongliu" class="navigation-bar-link">测试2</a>&emsp;
         </div>
         <div class="body">
-            <h3 class="title">
-                WE LEARN IN 大钟刘！
+            <h3>
+                使用AI，让生活更简单！
             </h3>
-            <script>
-                fetch('/dazhongliu/learn/list/files.txt')
-                    .then(r => r.text())
-                    .then(text => {
-                        const files = text.split('\r\n').filter(f => f);
-                        const list = files.map(f => `<li><a href="${f}">${f}</a></li>`).join('');
-                        document.getElementById('file-list').innerHTML = `<ul>${list}</ul>`;
-                    });
-            </script>
-            <ul id="list"></ul>
-            <script>
-                document.write("现在时间：" + Date());
-            </script>
-        </div>
-        <div class="foot">
-            <br /><br />
-            <p>大钟刘学习学会(TM)网站的所有出除特殊要求外的内容采用了<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans">CC BY-NC-SA 4.0协议</a></p>
+            <p>duanluo</p>
         </div>
     </body>
 </html>
