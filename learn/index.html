@@ -72,7 +72,8 @@
             <h3 class="title">
                 WE LEARN IN 大钟刘！
             </h3>
-            <script>
+
+            <!--<script>
                 fetch('/dazhongliu/learn/list/files.txt')
                     .then(r => r.text())
                     .then(text => {
@@ -81,7 +82,59 @@
                         document.getElementById('file-list').innerHTML = `<ul>${list}</ul>`;
                     });
             </script>
-            <ul id="list"></ul>
+            <ul id="list"></ul>-->
+
+            <!-- 确保有这个容器 -->
+            <div id="file-list">正在加载文件列表...</div>
+
+            <script>
+                // 添加错误处理的完整版本
+                fetch('/dazhongliu/learn/list/files.txt')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(text => {
+                        // 处理各种换行格式
+                        const files = text
+                            .split(/\r?\n/)
+                            .map(f => f.trim())
+                            .filter(f => f && f.endsWith('.html'));
+
+                        console.log('解析到的文件:', files);
+
+                        if (files.length === 0) {
+                            document.getElementById('file-list').innerHTML =
+                                '<p>未找到HTML文件。请确保已生成files.txt</p>';
+                            return;
+                        }
+
+                        const listHTML = `
+                      <ul>
+                        ${files.map(f => `<li><a href="${f}">${f}</a></li>`).join('')}
+                      </ul>
+                      <p>共找到 ${files.length} 个文件</p>
+                    `;
+
+                        document.getElementById('file-list').innerHTML = listHTML;
+                    })
+                    .catch(error => {
+                        console.error('加载失败:', error);
+                        document.getElementById('file-list').innerHTML = `
+                      <p style="color:red">加载文件列表失败: ${error.message}</p>
+                      <p>请检查:
+                        <ol>
+                          <li>files.txt 文件是否存在</li>
+                          <li>是否通过HTTP服务器运行(如Live Server)</li>
+                          <li>浏览器控制台是否有更多错误信息(F12打开开发者工具)</li>
+                        </ol>
+                      </p>
+                    `;
+                    });
+            </script>
+
             <script>
                 document.write("现在时间：" + Date());
             </script>
